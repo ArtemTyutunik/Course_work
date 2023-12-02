@@ -1,0 +1,17 @@
+import deviceQuery from "../query/device.js";
+
+class DeviceController{
+    async createDevice(req, res){
+        try {
+            let device = req.body;
+            const Id = await deviceQuery.createDevice(device)
+            res.status(200).json(Id)
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
+}
+const deviceController = new DeviceController()
+export default deviceController
