@@ -10,6 +10,16 @@ class CustomerQuery{
             throw Error ("Error creating customer:" + error.message)
         }
     }
+
+    async getCustomers() {
+        try {
+            const query = 'SELECT * FROM `customers`';
+            const [results] = await connection.promise().query(query);
+            return results;
+        } catch (error) {
+            throw Error ("Error getting review:" + error.message)
+        }
+    }
 }
 const customerQuery = new CustomerQuery()
 export default customerQuery

@@ -11,6 +11,18 @@ class WorkerQuery{
 
         }
     }
+
+    async getWorkers() {
+        try {
+            const query = 'SELECT * FROM `workers`';
+            const [results] = await connection.promise().query(query);
+            return results;
+        } catch (error) {
+            throw Error ("Error getting worker:" + error.message)
+
+        }
+    }
+
 }
 const workerQuery = new WorkerQuery()
 export default workerQuery

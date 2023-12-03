@@ -18,7 +18,7 @@ class OrderQuery{
             const query = 'INSERT INTO `m2m_workers_orders` SET ?';
             await connection.promise().query(query, order);
         } catch (error) {
-            throw Error ("Error creating order:" + error.message)
+            throw Error ("Error creating:" + error.message)
         }
     }
 
@@ -28,7 +28,7 @@ class OrderQuery{
             const [results] = await connection.promise().query(query);
             return results;
         } catch (error) {
-            throw Error ("Error creating order:" + error.message)
+            throw Error ("Error getting orders:" + error.message)
         }
     }
 
@@ -52,7 +52,7 @@ class OrderQuery{
             const [results] = await connection.promise().query(query, ID);
             return results;
         } catch (error) {
-            throw Error ("Error creating order:" + error.message)
+            throw Error ("Error getting order:" + error.message)
         }
     }
 

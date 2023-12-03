@@ -12,6 +12,17 @@ class DeviceController{
         }
         return res
     }
+
+    async getDevices(req, res){
+        try {
+            const result = await deviceQuery.getDevices()
+            res.status(200).json(result)
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
 }
 const deviceController = new DeviceController()
 export default deviceController

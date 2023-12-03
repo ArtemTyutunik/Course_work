@@ -10,6 +10,16 @@ class DeviceQuery{
             throw Error ("Error creating device:" + error.message)
         }
     }
+
+    async getDevices() {
+        try {
+            const query = 'SELECT * FROM `devices`';
+            const [results] = await connection.promise().query(query);
+            return results;
+        } catch (error) {
+            throw Error ("Error getting review:" + error.message)
+        }
+    }
 }
 const deviceQuery = new DeviceQuery()
 export default deviceQuery
