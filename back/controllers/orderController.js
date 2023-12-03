@@ -26,7 +26,7 @@ class OrderController{
 
     async getOrderByID(req, res){
         try {
-            const {ID} = req.query;
+            const {ID} = req.params;
             const result = await orderQuery.getOrderByID(ID)
             res.status(200).json(result)
         } catch (e) {

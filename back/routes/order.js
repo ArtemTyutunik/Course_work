@@ -5,6 +5,6 @@ const orderRouter = Router()
 
 orderRouter.post('/create', orderController.createOrder)
 orderRouter.get('/get_all', orderController.getOrders)
-orderRouter.get('/get', orderController.getOrderByID)
+orderRouter.get('/get/:ID', orderController.getOrderByID)
 export default orderRouter
 
