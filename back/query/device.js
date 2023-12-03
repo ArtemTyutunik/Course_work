@@ -20,6 +20,20 @@ class DeviceQuery{
             throw Error ("Error getting review:" + error.message)
         }
     }
+
+    async deleteDeviceByID(ID) {
+        try {
+            const query = 'DELETE FROM `devices` WHERE device_id = ?';
+            const [results] = await connection.promise().query(query, ID);
+            console.log(results);
+        } catch (error) {
+            throw Error ("Error getting review:" + error.message)
+        }
+    }
+
+
+
+
 }
 const deviceQuery = new DeviceQuery()
 export default deviceQuery

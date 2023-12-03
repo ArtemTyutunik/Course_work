@@ -56,6 +56,19 @@ class OrderQuery{
         }
     }
 
+    async updateOrderByID(changedOrder, ID){
+        try {
+            const columnsToUpdate = Object.keys(changedOrder);
+            const setValues = columnsToUpdate.map(column => `${column} = ?`).join(', ');
+            const values = Object.values(changedOrder);
+            const query = `UPDATE \`order\` SET ${setValues} WHERE order_id = ?`;
+            const updateValues = [...values, ID];
+            await connection.promise().query(query, updateValues);
+        } catch (error) {
+            throw Error ("Error changing orders:" + error.message)
+        }
+    }
+
 }
 const orderQuery = new OrderQuery()
 export default orderQuery

@@ -35,6 +35,19 @@ class OrderController{
         }
         return res
     }
+
+    async updateOrderByID(req, res){
+        try {
+            const {ID} = req.params;
+            const changedOrder = req.body;
+            await orderQuery.updateOrderByID(changedOrder, ID)
+            res.status(200).json()
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
 }
 const orderController = new OrderController()
 export default orderController
