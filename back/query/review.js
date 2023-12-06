@@ -17,7 +17,7 @@ class ReviewQuery{
             const [results] = await connection.promise().query(query);
             return results;
         } catch (error) {
-            throw Error ("Error getting review:" + error.message)
+            throw Error ("Error getting reviews:" + error.message)
         }
     }
 
@@ -27,7 +27,7 @@ class ReviewQuery{
             const [results] = await connection.promise().query(query, ID);
             return results;
         } catch (error) {
-            throw Error ("Error creating review:" + error.message)
+            throw Error ("Error getting review:" + error.message)
         }
     }
 }

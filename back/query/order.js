@@ -31,7 +31,6 @@ class OrderQuery{
             throw Error ("Error getting orders:" + error.message)
         }
     }
-
     async getOrderByID(ID) {
         try {
             const query =
@@ -65,7 +64,7 @@ class OrderQuery{
             const updateValues = [...values, ID];
             await connection.promise().query(query, updateValues);
         } catch (error) {
-            throw Error ("Error changing orders:" + error.message)
+            throw Error ("Error changing order:" + error.message)
         }
     }
 

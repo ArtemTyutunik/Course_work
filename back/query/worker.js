@@ -18,7 +18,7 @@ class WorkerQuery{
             const [results] = await connection.promise().query(query);
             return results;
         } catch (error) {
-            throw Error ("Error getting worker:" + error.message)
+            throw Error ("Error getting workers:" + error.message)
 
         }
     }

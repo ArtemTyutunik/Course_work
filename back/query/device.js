@@ -17,7 +17,7 @@ class DeviceQuery{
             const [results] = await connection.promise().query(query);
             return results;
         } catch (error) {
-            throw Error ("Error getting review:" + error.message)
+            throw Error ("Error getting device:" + error.message)
         }
     }
 
@@ -27,7 +27,7 @@ class DeviceQuery{
             const [results] = await connection.promise().query(query, ID);
             console.log(results);
         } catch (error) {
-            throw Error ("Error getting review:" + error.message)
+            throw Error ("Error deleting device:" + error.message)
         }
     }
 
