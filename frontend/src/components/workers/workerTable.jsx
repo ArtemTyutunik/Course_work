@@ -10,15 +10,9 @@ import {
     TableRow,
     Typography
 } from "@mui/material";
-import InfoIcon from '@mui/icons-material/Info';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 
-import formatTime from "../utils/fromatTime.js";
-import {useNavigate} from "react-router-dom";
-
-const TableItem = (props) => {
+const WorkerTable = (props) => {
     const {title, items, cols = []} = props
-    const navigate = useNavigate()
     return (
         <>
             <Typography variant={'h3'} margin={'10px'}>
@@ -34,7 +28,6 @@ const TableItem = (props) => {
                                     <TableCell align="right" key={col.label}>{col.label}</TableCell>
                                 ))
                             }
-                            <TableCell align="right">Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -44,20 +37,10 @@ const TableItem = (props) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">{row.id}</TableCell>
-                                <TableCell align="right">{row.orderStarted}</TableCell>
-                                <TableCell align="right">{formatTime(row.orderCompleteDate)}</TableCell>
-                                <TableCell align="right">{row.orderCompleted}</TableCell>
-                                <TableCell align="right">{row.orderProblem}</TableCell>
-                                <TableCell align="right">{formatTime(row.orderStartDate)}</TableCell>
-                                <TableCell align="right">
-                                    <Box display={'flex'} sx={{gap: '5px'}}>
-                                        <Button variant="outlined"
-                                                startIcon={<InfoIcon />}
-                                                onClick={() => navigate(`${row.id}`)}
-                                        />
-                                        <Button variant="outlined" startIcon={<BorderColorIcon />}/>
-                                    </Box>
-                                </TableCell>
+                                <TableCell align="right">{row.email}</TableCell>
+                                <TableCell align="right">{row.name}</TableCell>
+                                <TableCell align="right">{row.phone}</TableCell>
+                                <TableCell align="right">{row.salary}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -70,4 +53,4 @@ const TableItem = (props) => {
     )
 }
 
-export default TableItem;
+export default WorkerTable;

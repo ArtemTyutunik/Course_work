@@ -5,7 +5,6 @@ const options = [
     'Orders',
     'Workers',
     'Reviews',
-    'Customers',
     'Devices',
 ]
 
