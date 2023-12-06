@@ -23,6 +23,18 @@ class DeviceController{
         }
         return res
     }
+
+    async deleteDeviceByID(req, res){
+        try {
+            const {ID} = req.params;
+            await deviceQuery.deleteDeviceByID(ID)
+            res.status(200).end()
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
 }
 const deviceController = new DeviceController()
 export default deviceController

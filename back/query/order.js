@@ -31,7 +31,6 @@ class OrderQuery{
             throw Error ("Error getting orders:" + error.message)
         }
     }
-
     async getOrderByID(ID) {
         try {
             const query =
@@ -53,6 +52,19 @@ class OrderQuery{
             return results;
         } catch (error) {
             throw Error ("Error getting order:" + error.message)
+        }
+    }
+
+    async updateOrderByID(changedOrder, ID){
+        try {
+            const columnsToUpdate = Object.keys(changedOrder);
+            const setValues = columnsToUpdate.map(column => `${column} = ?`).join(', ');
+            const values = Object.values(changedOrder);
+            const query = `UPDATE \`order\` SET ${setValues} WHERE order_id = ?`;
+            const updateValues = [...values, ID];
+            await connection.promise().query(query, updateValues);
+        } catch (error) {
+            throw Error ("Error changing order:" + error.message)
         }
     }
 

@@ -17,7 +17,7 @@ class CustomerQuery{
             const [results] = await connection.promise().query(query);
             return results;
         } catch (error) {
-            throw Error ("Error getting review:" + error.message)
+            throw Error ("Error getting customers:" + error.message)
         }
     }
 }
