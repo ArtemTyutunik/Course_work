@@ -68,6 +68,17 @@ class OrderQuery{
         }
     }
 
+    async updateOrderChangingDeviceID(ID) {
+        try {
+            const query = ' UPDATE `order` SET device_id = NULL WHERE device_id = ?';
+            const [results] = await connection.promise().query(query, ID);
+            return results;
+        } catch (error) {
+            throw Error ("Error changing orders:" + error.message)
+        }
+
+
+    }
 }
 const orderQuery = new OrderQuery()
 export default orderQuery

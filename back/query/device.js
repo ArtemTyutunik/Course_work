@@ -1,4 +1,5 @@
 import connection from  "../index.js"
+import orderQuery from "./order.js";
 
 class DeviceQuery{
     async createDevice(device) {
@@ -23,6 +24,7 @@ class DeviceQuery{
 
     async deleteDeviceByID(ID) {
         try {
+            await orderQuery.updateOrderChangingDeviceID(ID)
             const query = 'DELETE FROM `devices` WHERE device_id = ?';
             const [results] = await connection.promise().query(query, ID);
             console.log(results);
