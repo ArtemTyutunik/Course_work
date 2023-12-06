@@ -10,15 +10,15 @@ import {
     TableRow,
     Typography
 } from "@mui/material";
-import InfoIcon from '@mui/icons-material/Info';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import {deleteDevice} from "../../api/api.js";
 
-import formatTime from "../utils/fromatTime.js";
-import {useNavigate} from "react-router-dom";
-
-const TableItem = (props) => {
+const DevicesTable = (props) => {
     const {title, items, cols = []} = props
-    const navigate = useNavigate()
+
+    const deleteItem = async (id) => {
+       await deleteDevice(id)
+    }
+
     return (
         <>
             <Typography variant={'h3'} margin={'10px'}>
@@ -34,7 +34,7 @@ const TableItem = (props) => {
                                     <TableCell align="right" key={col.label}>{col.label}</TableCell>
                                 ))
                             }
-                            <TableCell align="right">Actions</TableCell>
+                            <TableCell align="right"> Actions </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -44,19 +44,10 @@ const TableItem = (props) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">{row.id}</TableCell>
-                                <TableCell align="right">{row.orderStarted}</TableCell>
-                                <TableCell align="right">{formatTime(row.orderCompleteDate)}</TableCell>
-                                <TableCell align="right">{row.orderCompleted}</TableCell>
-                                <TableCell align="right">{row.orderProblem}</TableCell>
-                                <TableCell align="right">{formatTime(row.orderStartDate)}</TableCell>
+                                <TableCell align="right">{row.model}</TableCell>
+                                <TableCell align="right">{row.customerId}</TableCell>
                                 <TableCell align="right">
-                                    <Box display={'flex'} sx={{gap: '5px'}}>
-                                        <Button variant="outlined"
-                                                startIcon={<InfoIcon />}
-                                                onClick={() => navigate(`${row.id}`)}
-                                        />
-                                        <Button variant="outlined" startIcon={<BorderColorIcon />}/>
-                                    </Box>
+                                    <Button color={'error'} variant={'outlined'} onClick={() => deleteItem(row.id)}>Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -70,4 +61,4 @@ const TableItem = (props) => {
     )
 }
 
-export default TableItem;
+export default DevicesTable;
