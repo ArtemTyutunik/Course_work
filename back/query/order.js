@@ -76,8 +76,16 @@ class OrderQuery{
         } catch (error) {
             throw Error ("Error changing orders:" + error.message)
         }
+    }
 
-
+    async getLastID() {
+        try {
+            const query = 'SELECT * FROM `order` ORDER BY order_id DESC LIMIT 1';
+            const [results] = await connection.promise().query(query);
+            return (results[0])
+        } catch (error) {
+            throw Error ("Error getting:" + error.message)
+        }
     }
 }
 const orderQuery = new OrderQuery()

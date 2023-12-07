@@ -12,7 +12,16 @@ class CustomerController{
         }
         return res
     }
-
+    async createOne(req, res){
+        try {
+            await customerQuery.createOne()
+            res.status(200).json()
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
     async getCustomers(req, res){
         try {
             const result = await customerQuery.getCustomers()

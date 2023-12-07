@@ -13,6 +13,16 @@ class WorkerController{
         return res
     }
 
+    async updateSalary(req, res){
+        try {
+            await workerQuery.updateSalary()
+            res.status(200).json()
+        } catch (e) {
+            console.error(e);
+            res.status(404).end()
+        }
+        return res
+    }
 
     async getWorkers(req, res){
         try {
